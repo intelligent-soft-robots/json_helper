@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <name>json_helper</name>
+  <version>1.0.0</version>
+  <description>parsing json file</description>
+  <license>undeterminded</license>
+  <author email="dbuechler@tuebingen.mpg.de">Dieter Buechler</author>
+  <maintainer email="dbuechler@tuebingen.mpg.de">Dieter Buechler</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>
