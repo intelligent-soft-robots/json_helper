@@ -11,7 +11,7 @@ find_package(Armadillo REQUIRED)
 catkin_package(
   LIBRARIES json_helper
   INCLUDE_DIRS include
-  CATKIN_DEPENDS 
+  CATKIN_DEPENDS
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${ARMADILLO_INCLUDE_DIRS})
@@ -21,4 +21,3 @@ add_library(json_helper
 )
 
 target_link_libraries(json_helper ${ARMADILLO_LIBRARIES})
-
