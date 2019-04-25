@@ -3,7 +3,7 @@
 namespace json_helper {
 
   Jsonhelper::Jsonhelper(){}
-  
+
   Jsonhelper::Jsonhelper(string path){
     j=parse(path);
   }
@@ -78,7 +78,7 @@ namespace json_helper {
       }
     }
   }
-  
+
   /*---*/
   template<typename T>
   void Jsonhelper::json2mat(string key,Mat<T>& m){
@@ -142,7 +142,7 @@ namespace json_helper {
       std::cerr <<"Jsonhelper: json not initialized!\n" << endl;
     }
   }
-  
+
   /*---*/
   template<typename T>
   void Jsonhelper::json2vector(string key,vector<T>& v){
@@ -156,24 +156,24 @@ namespace json_helper {
       //			for(auto const& value: sze) cout << value<<" ";
       //			cout <<"//"<<endl;
       if(sze.size()>1) {
-	std::cerr <<"json2vec: json obj "<< key<<"  must be 1 but is "<< sze.size() << " dimensional!\n" << endl;
+      	std::cerr <<"json2vec: json obj "<< key<<"  must be 1 but is "<< sze.size() << " dimensional!\n" << endl;
       }
       else{
-	// fill
-	for (unsigned int itr = 0; itr < sze.at(0);itr++) {
-	  if (sze.at(0)==1&&!j[key].is_array()) v.push_back(j[key]);
-	  else v.push_back(j[key].at(itr));
-	}
-	// print for testing
-	//				cout <<key <<": ";
-	//				for(auto const& value: v) cout << value<<" ";
-	//				cout <<"//"<<endl;
+      	// fill
+      	for (unsigned int itr = 0; itr < sze.at(0);itr++) {
+      	  if (sze.at(0)==1&&!j[key].is_array()) v.push_back(j[key]);
+      	  else v.push_back(j[key].at(itr));
+      	}
+      	// print for testing
+      	//				cout <<key <<": ";
+      	//				for(auto const& value: v) cout << value<<" ";
+      	//				cout <<"//"<<endl;
       }
     }else{
       std::cerr <<"Jsonhelper: json not initialized!\n" << endl;
     }
   }
-  
+
   /*---*/
   template<typename T>
   void Jsonhelper::json2vector2D(string key,vector<vector<T>>& v){
@@ -267,7 +267,7 @@ namespace json_helper {
       std::cerr <<"Jsonhelper: json not initialized!\n" << endl;
     }
   }
-  
+
   /*---*/
   template<typename T>
   void Jsonhelper::mat2json(string key,Mat<T> m){
@@ -287,5 +287,5 @@ namespace json_helper {
     }
     if(m.n_rows==1 && m.n_cols==1) j[key]=m;
   }
-  
+
 }
