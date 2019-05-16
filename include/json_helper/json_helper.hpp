@@ -66,10 +66,6 @@ namespace json_helper {
     json parse(string path){
       ifstream i(path);
       j=json::parse(i);
-      i.close();
-      ofstream o(path, std::ios::out | std::ios::trunc);//delete content
-      o << std::setw(4) << j << std::endl;// print pretty-> readable
-      o.close();
       return j;
     }
 
