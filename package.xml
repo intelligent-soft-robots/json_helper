@@ -1,14 +1,21 @@
 <?xml version="1.0"?>
-<package>
+<?xml-model
+   href="http://download.ros.org/schema/package_format3.xsd"
+   schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<package format="3">
+
   <name>json_helper</name>
   <version>1.0.0</version>
   <description>parsing json file</description>
-  <license>undeterminded</license>
+  <license>BSD 3-Clause</license>
   <author email="dbuechler@tuebingen.mpg.de">Dieter Buechler</author>
   <maintainer email="dbuechler@tuebingen.mpg.de">Dieter Buechler</maintainer>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
+  
 </package>

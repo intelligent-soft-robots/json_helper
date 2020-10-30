@@ -1,23 +1,35 @@
-cmake_minimum_required(VERSION 2.8.3)
-
+cmake_minimum_required(VERSION 3.10.2)
 project(json_helper)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-as-needed")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
 
-find_package(catkin REQUIRED COMPONENTS )
-
+find_package(ament_cmake REQUIRED)
 find_package(Armadillo REQUIRED)
 
-catkin_package(
-  LIBRARIES json_helper
-  INCLUDE_DIRS include
-  CATKIN_DEPENDS
-)
+ament_export_dependencies(Armadillo)
 
-include_directories(include ${catkin_INCLUDE_DIRS} ${ARMADILLO_INCLUDE_DIRS})
+set(all_targets)
+set(all_target_exports)
 
-add_library(json_helper
-  src/json_helper.cpp
-)
-
+add_library(${PROJECT_NAME} src/json_helper.cpp)
+target_include_directories(
+  ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(${PROJECT_NAME} Armadillo)
 target_link_libraries(json_helper ${ARMADILLO_LIBRARIES})
+ament_export_interfaces(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
+list(APPEND all_targets ${PROJECT_NAME})
+list(APPEND all_target_exports export_${PROJECT_NAME})
+
+install(DIRECTORY include/ DESTINATION include)
+install(
+  TARGETS ${all_targets}
+  EXPORT ${all_target_exports}
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES
+  DESTINATION include)
+ament_package()
+
