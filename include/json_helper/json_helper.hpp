@@ -20,7 +20,6 @@ using namespace std;
 
 namespace json_helper
 {
-
 class Jsonhelper
 {
 public:
@@ -93,8 +92,8 @@ public:
         if (jsonObj.is_primitive())
         {
             dim = 1;
-            //			cout << "primitive"<<endl;
-            //			cout << setw(2)<<jsonObj<<endl;
+            // cout << "primitive"<<endl;
+            // cout << setw(2)<<jsonObj<<endl;
         }
         else
         {
@@ -104,9 +103,8 @@ public:
                 try
                 {
                     jsonObj = jsonObj.at(0);
-                    //					cout << "trying"<<endl;
-                    //					cout <<
-                    // setw(2)<<jsonObj<<endl;
+                    // cout << "trying"<<endl;
+                    // cout << setw(2)<<jsonObj<<endl;
                 }
                 catch (exception& e)
                 {
@@ -130,15 +128,14 @@ public:
             int dim;
             this->get_dimension(jsonObj, dim);
             // print for testing
-            //			cout <<endl<<endl<< "dim="<<dim<< "   ";
-            //			cout<<jsonObj.dump();
-            //			cout <<"   ["<<endl;
+            // cout <<endl<<endl<< "dim="<<dim<< "   ";
+            // cout<<jsonObj.dump();
+            // cout <<"   ["<<endl;
             for (int i_dim = 1; i_dim <= dim; i_dim++)
             {
                 sze.push_back(jsonObj.size());
                 if (i_dim + 1 <= dim) jsonObj = jsonObj.at(0);
-                //				cout << sze.at(i_dim-1) <<
-                //"/"<<endl;
+                // cout << sze.at(i_dim-1) << "/"<<endl;
             }
         }
     }
@@ -155,10 +152,9 @@ public:
                 vector<unsigned int> sze;
                 this->get_size(j[key], sze);
                 // print for testing
-                //								cout
-                //<<"sze:
-                //"; for(auto const& value: sze) cout << value<<" "; cout
-                //<<"//"<<endl;
+                // cout <<"sze: ";
+                // for(auto const& value: sze) cout << value<<" ";
+                // cout <<"//"<<endl;
                 if (sze.size() > 2)
                     std::cerr << "json2mat: json obj " << key
                               << "  must be <=2 but is " << sze.size()
@@ -185,7 +181,7 @@ public:
             }
             else
                 m.zeros(0, 0);
-            //						m.print(key);
+            // m.print(key);
         }
         else
         {
@@ -205,10 +201,9 @@ public:
                 vector<unsigned int> sze;
                 this->get_size(j, sze);
                 // print for testing
-                //				cout <<"sze: ";
-                //				for(auto const& value: sze) cout
-                //<< value<<" "; 				cout
-                // <<"//"<<endl;
+                // cout <<"sze: ";
+                // for(auto const& value: sze) cout << value<<" ";
+                // cout <<"//"<<endl;
                 if (sze.size() > 2)
                     std::cerr << "json2mat: json obj " << j.dump()
                               << "  must be <=2 but is " << sze.size()
@@ -235,7 +230,7 @@ public:
             }
             else
                 m.zeros(0, 0);
-            //			m.print(key);
+            // m.print(key);
         }
         else
         {
@@ -275,10 +270,9 @@ public:
                         v.push_back(j[key].at(itr));
                 }
                 // print for testing
-                //				cout <<key <<": ";
-                //				for(auto const& value: v) cout
-                //<< value<<" "; 				cout
-                // <<"//"<<endl;
+                // cout <<key <<": ";
+                // for(auto const& value: v) cout << value<<" ";
+                // cout <<"//"<<endl;
             }
         }
         else
@@ -298,14 +292,9 @@ public:
             vector<unsigned int> sze;
             this->get_size(j[key], sze);
             // print for testing
-            //									cout <<"sze
-            //of
-            //"<<key<<":
-            //"; 									for(auto const& value: sze) cout <<
-            //value<<"
-            //";
-            // cout
-            //<<"//"<<endl;
+            // cout <<"sze of "<<key<<": ";
+            // for(auto const& value: sze) cout << value<<" ";
+            // cout <<"//"<<endl;
             if (!(sze.size() == 2))
             {
                 std::cerr << "json2vec2D: json obj " << key
@@ -316,7 +305,7 @@ public:
             else
             {
                 // fill
-                //				cout << setw(4)<<j[key]<<endl;
+                // cout << setw(4)<<j[key]<<endl;
                 for (unsigned int itr = 0; itr < sze.at(0); itr++)
                 {
                     v.push_back(vector<T>());
@@ -328,25 +317,19 @@ public:
                             v[itr].push_back(j[key].at(itr).at(itc));
                     }
                     // print for testing
-                    //					cout <<key <<itr<<": ";
-                    //					for(auto const& value: v[itr]) cout
-                    //<< value<<"
-                    //"; 					cout
-                    //<<"//"<<endl;
+                    // cout <<key <<itr<<": ";
+                    // for(auto const& value: v[itr]) cout << value<<" ";
+                    // cout <<"//"<<endl;
                 }
                 // print for testing
-                //								cout
-                //<<key
-                //<<": "<<endl;
+                // cout <<key <<": "<<endl;
                 // for(unsigned int i_v1=0;i_v1<v.size();i_v1++) {
-                // cout<<"|
-                //";
-                // for(unsigned int i_v2=0;i_v2<v.at(i_v1).size();i_v2++){
-                // cout
-                //<< v[i_v1][i_v2]<<" ";
-                //									}
-                //									cout<<"|"<<endl;
-                //								}
+                //  cout<<"| ";
+                //  for(unsigned int i_v2=0;i_v2<v.at(i_v1).size();i_v2++){
+                //      cout << v[i_v1][i_v2]<<" ";
+                //  }
+                //  cout<<"|"<<endl;
+                //}
             }
         }
         else
@@ -366,9 +349,9 @@ public:
             vector<unsigned int> sze;
             this->get_size(j[key], sze);
             // print for testing
-            //			cout <<"sze: ";
-            //			for(auto const& value: sze) cout << value<<" ";
-            //			cout <<"//"<<endl;
+            // cout <<"sze: ";
+            // for(auto const& value: sze) cout << value<<" ";
+            // cout <<"//"<<endl;
             if (!(sze.size() == 3))
             {
                 std::cerr << "json2vec3D: json obj " << key
@@ -395,30 +378,25 @@ public:
                                     j[key].at(it1).at(it2).at(it3));
                         }
                         // print for testing
-                        //						cout
-                        //<<key
-                        //<<it1<<
-                        //"/"<<it2<<": ";
+                        // cout <<key <<it1<< "/"<<it2<<": ";
                         // for(auto const& value: v[it1][it2]) cout << value<<"
-                        // "; 						cout
-                        // <<"//"<<endl;
+                        // "; cout <<"//"<<endl;
                     }
                 }
                 // print for testing
-                //								cout
-                //<<key
-                //<<": "<<endl;
+                // cout <<key <<": "<<endl;
                 // for(unsigned int i_v1=0;i_v1<v.size();i_v1++) {
-                // cout<<i_v1<< " "; for(unsigned int
-                // i_v2=0;i_v2<v.at(i_v1).size();i_v2++){ 										cout<<i_v2<< " |";
-                // for(unsigned int
-                // i_v3=0;i_v3<v.at(i_v1).at(i_v2).size();i_v3++){
-                // cout << v[i_v1][i_v2][i_v3]<<" ";
-                //										}
-                //										cout<<"|"<<endl;
-                //									}
-                //									cout<<"|"<<endl;
-                //								}
+                //  cout<<i_v1<< " ";
+                //  for(unsigned int i_v2=0;i_v2<v.at(i_v1).size();i_v2++){
+                //      cout<<i_v2<< " |";
+                //      for(unsigned int
+                //      i_v3=0;i_v3<v.at(i_v1).at(i_v2).size();i_v3++){
+                //          cout << v[i_v1][i_v2][i_v3]<<" ";
+                //      }
+                //      cout<<"|"<<endl;
+                //  }
+                //  cout<<"|"<<endl;
+                //}
             }
         }
         else
