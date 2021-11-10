@@ -12,12 +12,12 @@ ament_export_dependencies(Armadillo)
 set(all_targets)
 set(all_target_exports)
 
-add_library(${PROJECT_NAME} src/json_helper.cpp)
+add_library(${PROJECT_NAME} INTERFACE)
 target_include_directories(
-  ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  ${PROJECT_NAME} INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(${PROJECT_NAME} Armadillo)
-target_link_libraries(json_helper ${ARMADILLO_LIBRARIES})
+target_link_libraries(json_helper INTERFACE ${ARMADILLO_LIBRARIES})
 ament_export_interfaces(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 list(APPEND all_targets ${PROJECT_NAME})
 list(APPEND all_target_exports export_${PROJECT_NAME})
